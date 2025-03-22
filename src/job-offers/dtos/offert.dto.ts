@@ -1,13 +1,16 @@
 import { Access } from "src/constants/access.enum";
+import { z } from "zod";
 
-export type OfferDTO = {
-  offer_id: string;
-  title: string;
-  expiration: string;
-  body: string;
-  labels: string[];
-  target: string;
-  access: Access;
-  craetedAt: string;
-  createdBy: string;
-};
+export const OfferSchema = z.object({
+  offer_id: z.string(),
+  title: z.string(),
+  expiration: z.string(),
+  body: z.string(),
+  labels: z.array(z.string()),
+  target: z.string(),
+  access: z.nativeEnum(Access),
+  craetedAt: z.string(),
+  createdBy: z.string(),
+});
+
+export type OfferDTO = z.infer<typeof OfferSchema>;
