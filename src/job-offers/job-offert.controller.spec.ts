@@ -1,16 +1,27 @@
-import { describe, it, expect } from "bun:test";
+import { describe, it, expect, spyOn, mock } from "bun:test";
 import { JobOfferController } from "./job-offert.controller";
-import * as request from "supertest";
+import request from "supertest";
 import { Test } from "@nestjs/testing";
-import { Body, INestApplication } from "@nestjs/common";
+import { Body, INestApplication, Provider } from "@nestjs/common";
+import { JobOfferService } from "./job-offert.service";
 
 describe("JobOfferController", () => {
   let app: INestApplication | null = null;
+  const jobOfferService = {
+    createOffer: mock(),
+    listOffers: mock(),
+    describeOffer: mock(),
+    deleteOffer: mock(),
+  };
 
   describe(async () => {
     const moduleRef = await Test.createTestingModule({
       controllers: [JobOfferController],
-    }).compile();
+      providers: [JobOfferService],
+    })
+      .overrideProvider(JobOfferService)
+      .useValue(jobOfferService)
+      .compile();
 
     app = moduleRef.createNestApplication();
     await app.init();
@@ -27,5 +38,25 @@ describe("JobOfferController", () => {
         target: "http://example.com/01",
         access: "public",
       });
+
+    expect(jobOfferService.createOffer).toBeCalled();
+  });
+
+  it("should list all job offers", async () => {
+    await request(app!.getHttpServer()).get("/job_offers");
+
+    expect(jobOfferService.listOffers).toBeCalled();
+  });
+
+  it("should describe a job offer", async () => {
+    await request(app!.getHttpServer()).get("/job_offers/01");
+
+    expect(jobOfferService.describeOffer).toBeCalled();
+  });
+
+  it("should delete a job offer", async () => {
+    await request(app!.getHttpServer()).delete("/job_offers/01");
+
+    expect(jobOfferService.deleteOffer).toBeCalled();
   });
 });
