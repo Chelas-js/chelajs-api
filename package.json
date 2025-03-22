@@ -1,16 +1,8 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "dist/src/main",
-  "scripts": {
-    "build": "nest build",
-    "start:dev": "nest start --watch",
-    "start:prod": "node ."
-  },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "main": "dist/src/main",
   "devDependencies": {
     "@nestjs/cli": "^11.0.5",
     "@nestjs/common": "^11.0.12",
@@ -18,6 +10,17 @@
     "@nestjs/platform-express": "^11.0.12",
     "@nestjs/schematics": "^11.0.2",
     "@types/node": "^22.13.11",
+    "prettier": "^3.5.3",
     "typescript": "^5.8.2"
+  },
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "scripts": {
+    "build": "nest build",
+    "start:dev": "nest start --watch",
+    "start:prod": "node .",
+    "lint": "prettier -c .",
+    "fmt": "prettier -w ."
   }
 }
