@@ -29,10 +29,10 @@ export class ParticipantsRepository {
     if (!doc.exists) {
       return null;
     }
-    return doc.data();
+    return doc.data() as ParticipantDTO;
   }
 
-  async getParticipants() {
+  async listParticipants() {
     const docs = await this.participantsCollections
       .orderBy("createdAt")
       .limit(30)
