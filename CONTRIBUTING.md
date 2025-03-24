@@ -104,4 +104,8 @@ bun fmt
 
 Este comando aplicará automáticamente el formato de Prettier a todo el código del proyecto.
 
+## Documentación de la API
+
+**Todas las APIs deben estar documentadas en el archivo `docs/api.md`**. Al agregar o modificar funcionalidades de la API, asegúrate de actualizar la documentación correspondiente en este archivo. Esto ayuda a mantener una documentación centralizada y actualizada de todos los endpoints y su funcionamiento.
+
 ¡Con estos pasos, deberías tener tu entorno de desarrollo configurado y listo para comenzar a contribuir! Por favor, consulta otros documentos dentro del repositorio para obtener más información sobre la estructura del proyecto y las guías de contribución específicas.
