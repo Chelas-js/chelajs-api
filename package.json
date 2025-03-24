@@ -1,23 +1,36 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "dist/src/main",
-  "scripts": {
-    "build": "nest build",
-    "start:dev": "nest start --watch",
-    "start:prod": "node ."
-  },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "main": "dist/src/main",
   "devDependencies": {
+    "@google-cloud/firestore": "^7.11.0",
+    "@jondotsoy/utils-js": "^0.6.0",
     "@nestjs/cli": "^11.0.5",
     "@nestjs/common": "^11.0.12",
+    "@nestjs/config": "^4.0.1",
     "@nestjs/core": "^11.0.12",
     "@nestjs/platform-express": "^11.0.12",
     "@nestjs/schematics": "^11.0.2",
+    "@nestjs/swagger": "^11.0.7",
+    "@nestjs/testing": "^11.0.12",
+    "@types/bun": "^1.2.5",
     "@types/node": "^22.13.11",
-    "typescript": "^5.8.2"
+    "@types/supertest": "^6.0.2",
+    "firebase-admin": "^13.2.0",
+    "prettier": "^3.5.3",
+    "supertest": "^7.1.0",
+    "typescript": "^5.8.2",
+    "zod": "^3.24.2"
+  },
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "scripts": {
+    "build": "nest build",
+    "start:dev": "nest start --watch",
+    "start:prod": "node .",
+    "lint": "prettier -c .",
+    "fmt": "prettier -w ."
   }
 }
