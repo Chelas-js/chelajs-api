@@ -1,6 +1,4 @@
-import {
-  Injectable,
-} from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { OfferDTO } from "./dtos/offert.dto.js";
 import { Firestore } from "@google-cloud/firestore";
 import { ConfigService } from "@nestjs/config";

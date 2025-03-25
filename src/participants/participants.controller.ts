@@ -1,12 +1,8 @@
 import {
-  ArgumentMetadata,
   Body,
   Controller,
-  Injectable,
   Param,
-  PipeTransform,
   Put,
-  BadRequestException,
   UseGuards,
   Get,
   NotFoundException,
@@ -20,21 +16,7 @@ import { ParticipantsService } from "./participants.service.js";
 import { AuthGuard } from "../auth/auth.guard.js";
 import { Authantication } from "../auth/authantication.decoration.js";
 import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
-import { ZodSchema } from "zod";
-
-@Injectable()
-class ZodValidationPipe implements PipeTransform {
-  constructor(private readonly schema: ZodSchema) {}
-
-  transform(value: any, metadata: ArgumentMetadata) {
-    const { success, error } = this.schema.safeParse(value);
-    if (success === false)
-      throw new BadRequestException(`Validation failed: ${error.message}`, {
-        cause: error,
-      });
-    return value;
-  }
-}
+import { ZodValidationPipe } from "./ZodValidationPipe.js";
 
 export class HiddenParticipantError extends Error {}
 

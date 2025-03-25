@@ -113,6 +113,7 @@ Los documentos disponibles son:
 - [Authentication](./docs/rest/authentication.md) describe la autenticación de la API REST.
 - [Job Offers](./docs/rest/job-offers.md) muestra las APIs para gestionar las ofertas de trabajo.
 - [Participants](./docs/rest/participants.md) muestra las APIs para gestionar información de los participantes de la comunidad.
+- [Events](./docs/rest/events.md) muestra las APIs para gestionar eventos.
 
 Al agregar o modificar funcionalidades de la API, asegúrate de actualizar la documentación correspondiente en estos archivos. Esto ayuda a mantener una documentación centralizada y actualizada de todos los endpoints y su funcionamiento.
 
