@@ -4,6 +4,7 @@ import { ConfigModule } from "@nestjs/config";
 import { configuration } from "./config/configuration";
 import { AuthModule } from "./auth/auth.module";
 import { ParticipantsModule } from "./participants/participants.module";
+import { KnowTokenController } from "./know-token/know-token.controller";
 
 @Module({
   imports: [
@@ -15,5 +16,6 @@ import { ParticipantsModule } from "./participants/participants.module";
     JobOfferModule,
     ParticipantsModule,
   ],
+  controllers: [KnowTokenController],
 })
 export class AppModule {}
