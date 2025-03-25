@@ -1,4 +1,4 @@
-import { Access } from "src/constants/access.enum";
+import { Access } from "../../constants/access.enum.js";
 
 import { z } from "zod";
 

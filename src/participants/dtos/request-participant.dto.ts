@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ParticipantSchema } from "./participant.dto";
+import { ParticipantSchema } from "./participant.dto.js";
 
 export const RequestParticipantSchema = ParticipantSchema.pick({
   name: true,

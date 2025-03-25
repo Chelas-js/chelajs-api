@@ -1,6 +1,6 @@
 import { DynamicModule, Module } from "@nestjs/common";
-import { AuthService } from "./auth.service";
-import { FirebaseAdminService } from "./firebaseAdmin.service";
+import { AuthService } from "./auth.service.js";
+import { FirebaseAdminService } from "./firebaseAdmin.service.js";
 
 @Module({})
 export class AuthModule {

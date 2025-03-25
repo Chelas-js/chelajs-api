@@ -11,11 +11,11 @@ import {
   Query,
   UseGuards,
 } from "@nestjs/common";
-import { JobOfferService } from "./job-offert.service";
-import { CreateOfferSchema } from "./dtos/create-offert.dto";
-import { AuthGuard } from "../auth/auth.guard";
-import { Authantication } from "../auth/authantication.decoration";
-import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
+import { JobOfferService } from "./job-offert.service.js";
+import { CreateOfferSchema } from "./dtos/create-offert.dto.js";
+import { AuthGuard } from "../auth/auth.guard.js";
+import { Authantication } from "../auth/authantication.decoration.js";
+import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier.js";
 
 @Controller("/job_offers")
 export class JobOfferController {

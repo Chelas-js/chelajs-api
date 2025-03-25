@@ -5,9 +5,9 @@ import {
   UnauthorizedException,
 } from "@nestjs/common";
 import type { IncomingMessage } from "node:http";
-import { AuthService } from "./auth.service";
+import { AuthService } from "./auth.service.js";
 import { result, get } from "@jondotsoy/utils-js";
-import { authanticationTokensMap } from "./authantication.decoration";
+import { authanticationTokensMap } from "./authantication.decoration.js";
 
 @Injectable()
 export class AuthGuard implements CanActivate {

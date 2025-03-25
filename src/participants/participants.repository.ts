@@ -1,8 +1,8 @@
 import { Firestore } from "@google-cloud/firestore";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { ConfigurationDTO } from "../config/dtos/configuration.dto";
-import { ParticipantDTO } from "./dtos/participant.dto";
+import { ConfigurationDTO } from "../config/dtos/configuration.dto.js";
+import { ParticipantDTO } from "./dtos/participant.dto.js";
 
 @Injectable({})
 export class ParticipantsRepository {

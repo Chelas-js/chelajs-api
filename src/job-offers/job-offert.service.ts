@@ -6,9 +6,9 @@ import {
   Param,
   Put,
 } from "@nestjs/common";
-import { CreateOfferDTO } from "./dtos/create-offert.dto";
-import { OfferDTO } from "./dtos/offert.dto";
-import { JobOfferRepository } from "./job-offert.repository";
+import { CreateOfferDTO } from "./dtos/create-offert.dto.js";
+import { OfferDTO } from "./dtos/offert.dto.js";
+import { JobOfferRepository } from "./job-offert.repository.js";
 
 class AuthorCannotReplateExistentDocumentError extends Error {
   constructor(

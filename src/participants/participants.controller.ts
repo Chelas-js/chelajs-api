@@ -11,14 +11,14 @@ import {
   Get,
   NotFoundException,
 } from "@nestjs/common";
-import { ParticipantDTO } from "./dtos/participant.dto";
+import { ParticipantDTO } from "./dtos/participant.dto.js";
 import {
   RequestParticipantDTO,
   RequestParticipantSchema,
-} from "./dtos/request-participant.dto";
-import { ParticipantsService } from "./participants.service";
-import { AuthGuard } from "../auth/auth.guard";
-import { Authantication } from "src/auth/authantication.decoration";
+} from "./dtos/request-participant.dto.js";
+import { ParticipantsService } from "./participants.service.js";
+import { AuthGuard } from "../auth/auth.guard.js";
+import { Authantication } from "../auth/authantication.decoration.js";
 import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
 import { ZodSchema } from "zod";
 

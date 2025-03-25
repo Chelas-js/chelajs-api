@@ -1,4 +1,4 @@
-import { Controller, Get, Header, Render, Res, Response } from "@nestjs/common";
+import { Controller, Get, Header, Res } from "@nestjs/common";
 import { createReadStream } from "fs";
 
 @Controller(".know-token")

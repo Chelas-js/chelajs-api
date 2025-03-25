@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { ParticipantsRepository } from "./participants.repository";
-import { ParticipantDTO } from "./dtos/participant.dto";
+import { ParticipantsRepository } from "./participants.repository.js";
+import { ParticipantDTO } from "./dtos/participant.dto.js";
 
 export class HiddenParticipantError extends Error {}
 

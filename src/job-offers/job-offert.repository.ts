@@ -1,16 +1,10 @@
 import {
-  Controller,
-  Delete,
-  Get,
   Injectable,
-  Param,
-  Put,
 } from "@nestjs/common";
-import { CreateOfferDTO } from "./dtos/create-offert.dto";
-import { OfferDTO } from "./dtos/offert.dto";
+import { OfferDTO } from "./dtos/offert.dto.js";
 import { Firestore } from "@google-cloud/firestore";
 import { ConfigService } from "@nestjs/config";
-import { ConfigurationDTO } from "src/config/dtos/configuration.dto";
+import { ConfigurationDTO } from "../config/dtos/configuration.dto.js";
 
 @Injectable()
 export class JobOfferRepository {

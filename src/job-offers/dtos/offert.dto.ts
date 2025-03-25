@@ -1,4 +1,4 @@
-import { Access } from "src/constants/access.enum";
+import { Access } from "src/constants/access.enum.js";
 import { z } from "zod";
 
 export const OfferSchema = z.object({

@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import type * as admin from "firebase-admin";
-import { ConfigurationDTO } from "./dtos/configuration.dto";
+import { ConfigurationDTO } from "./dtos/configuration.dto.js";
 
 @Injectable()
 export class FirebaseAdminService {

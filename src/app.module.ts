@@ -1,10 +1,10 @@
 import { DynamicModule, Module } from "@nestjs/common";
-import { JobOfferModule } from "./job-offers/job-offert.module";
+import { JobOfferModule } from "./job-offers/job-offert.module.js";
 import { ConfigModule } from "@nestjs/config";
-import { configuration } from "./config/configuration";
-import { AuthModule } from "./auth/auth.module";
-import { ParticipantsModule } from "./participants/participants.module";
-import { KnowTokenController } from "./know-token/know-token.controller";
+import { configuration } from "./config/configuration.js";
+import { AuthModule } from "./auth/auth.module.js";
+import { ParticipantsModule } from "./participants/participants.module.js";
+import { KnowTokenController } from "./know-token/know-token.controller.js";
 
 @Module({
   imports: [

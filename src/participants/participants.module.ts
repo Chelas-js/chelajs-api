@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
-import { ParticipantsService } from "./participants.service";
-import { ParticipantsRepository } from "./participants.repository";
-import { ParticipantsController } from "./participants.controller";
+import { ParticipantsService } from "./participants.service.js";
+import { ParticipantsRepository } from "./participants.repository.js";
+import { ParticipantsController } from "./participants.controller.js";
 
 @Module({
   controllers: [ParticipantsController],
