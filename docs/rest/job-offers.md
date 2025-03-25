@@ -1,4 +1,4 @@
-# Job Offers REST API Documentation
+# REST API Documentation for Job Offers
 
 ## Table of Contents
 
