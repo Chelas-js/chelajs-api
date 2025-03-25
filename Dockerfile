@@ -7,11 +7,11 @@ RUN bun install
 RUN bun run build
 
 FROM base AS build-dev-deps
-COPY . .
+COPY --from=build /usr/src/app/package.json /usr/src/app/bun.lock .
 RUN bun install --frozen-lockfile --production
 
 FROM base AS publish
-COPY package.json bun.lock .
+COPY --from=build /usr/src/app/package.json /usr/src/app/bun.lock .
 COPY --from=build /usr/src/app/dist dist
 COPY --from=build-dev-deps /usr/src/app/node_modules node_modules
 ENV PORT 3000
