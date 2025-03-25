@@ -16,7 +16,7 @@ export class ParticipantsRepository {
     this.firestore = new Firestore({
       databaseId: configService.get("databaseId"),
     });
-    this.participantsCollections = this.firestore.collection("job_offers");
+    this.participantsCollections = this.firestore.collection("participants");
   }
 
   async setParticipant(participant: ParticipantDTO) {
