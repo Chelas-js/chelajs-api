@@ -22,7 +22,9 @@
 
 # Endpoint: PUT /job_offers/:offerId
 
-Permite crear o actualizar una oferta de trabajo en la base de datos. Si la oferta con el `offerId` proporcionado no existe, se creará una nueva. Si ya existe, se actualizará con los datos proporcionados en el cuerpo de la petición.
+Permite crear o actualizar una oferta de trabajo en la base de datos. Si la oferta con el `offerId` proporcionado no existe, se creará una nueva. Si ya existe, se actualizará con los datos proporcionados en el cuerpo de la petición. **Este endpoint requiere autenticación y autorización. Consulte la [documentación de autenticación](./authentication.md) para obtener detalles sobre cómo autenticar sus peticiones. Solo usuarios autenticados y autorizados pueden crear o modificar ofertas de trabajo.**
+
+**Authentication and Authorization Required:** Este endpoint **requiere autenticación y autorización**. Consulte la [documentación de autenticación](./authentication.md) para obtener detalles sobre cómo autenticar sus peticiones. **Solo se permite la creación o modificación de ofertas a usuarios autenticados y autorizados.**
 
 ## Request Body
 
@@ -79,7 +81,9 @@ El cuerpo de la respuesta contendrá el objeto de la oferta de trabajo que ha si
 
 # Endpoint: GET /job_offers
 
-Entrega una lista paginada de todas las ofertas de trabajo públicas. Este endpoint retorna todas las ofertas que tienen el campo `access` establecido como `public`.
+Entrega una lista paginada de todas las ofertas de trabajo públicas. Este endpoint retorna todas las ofertas que tienen el campo `access` establecido como `public`. **Este endpoint requiere autenticación. Consulte la [documentación de autenticación](./authentication.md) para obtener detalles sobre cómo autenticar sus peticiones.**
+
+**Authentication Required:** Este endpoint **requiere autenticación**. Consulte la [documentación de autenticación](./authentication.md) para obtener detalles sobre cómo autenticar sus peticiones.
 
 ## Success Response
 
@@ -114,11 +118,13 @@ Por ejemplo, si la respuesta anterior contiene `"nextToken": "abc123xyz"`, la si
 
 # Endpoint: GET /job_offers/:offerId
 
-Permite obtener una oferta de trabajo específica por su `offerId`.
+Permite obtener una oferta de trabajo específica por su `offerId`. **Este endpoint requiere autenticación. Consulte la [documentación de autenticación](./authentication.md) para obtener detalles sobre cómo autenticar sus peticiones. Para ofertas privadas, solo el propietario autenticado puede acceder a la información.**
+
+**Authentication Required:** Este endpoint **requiere autenticación**. Consulte la [documentación de autenticación](./authentication.md) para obtener detalles sobre cómo autenticar sus peticiones. **El acceso a ofertas privadas está restringido al propietario autenticado.**
 
 ## Success Response
 
-Si la oferta de trabajo existe y es accesible (es decir, no es privada o el usuario tiene los permisos necesarios - _Nota: No se especifica el manejo de permisos para ofertas privadas_), el servicio responderá con un código de estado HTTP `200 OK`.
+Si la oferta de trabajo existe y es accesible (es decir, no es privada o el usuario autenticado es el dueño de la oferta privada), el servicio responderá con un código de estado HTTP `200 OK`.
 
 **Status Code:** `200 OK`
 
@@ -126,15 +132,17 @@ El cuerpo de la respuesta contendrá un objeto JSON que representa la oferta de 
 
 ## Error Response
 
-Si la oferta de trabajo con el `offerId` proporcionado no existe en la base de datos, o si la oferta existe pero es de tipo `private` y el usuario no tiene permisos para acceder a ella, el servicio responderá con un código de estado HTTP `404 Not Found`.
+Si la oferta de trabajo con el `offerId` proporcionado no existe en la base de datos, o si la oferta existe pero es de tipo `private` y el usuario autenticado no es el dueño, el servicio responderá con un código de estado HTTP `404 Not Found`.
 
 **Status Code:** `404 Not Found`
 
-_Nota:_ Se asume que las ofertas `private` no son accesibles a través de este endpoint a usuarios no autorizados, resultando en un 404 para simplificar la API pública. No se especifica un código de error diferente para ofertas privadas versus ofertas no existentes.
+_Nota:_ Se asume que las ofertas `private` solo son accesibles a través de este endpoint al usuario autenticado que sea el dueño de la oferta. No se especifica un código de error diferente para ofertas privadas versus ofertas no existentes, se retorna `404 Not Found` en ambos casos para peticiones no autorizadas o no encontradas.
 
 # Endpoint: DELETE /job_offers/:offerId
 
-Permite eliminar una oferta de trabajo específica por su `offerId`. La eliminación solo será exitosa si el usuario que realiza la petición es el mismo usuario que creó la oferta.
+Permite eliminar una oferta de trabajo específica por su `offerId`. La eliminación solo será exitosa si el usuario que realiza la petición es el mismo usuario que creó la oferta. **Este endpoint requiere autenticación y autorización. Consulte la [documentación de autenticación](./authentication.md) para obtener detalles sobre cómo autenticar sus peticiones. Solo el propietario autenticado de la oferta puede eliminarla.**
+
+**Authentication and Authorization Required:** Este endpoint **requiere autenticación y autorización**. Consulte la [documentación de autenticación](./authentication.md) para obtener detalles sobre cómo autenticar sus peticiones. **Solo el propietario autenticado de la oferta tiene autorización para eliminarla.**
 
 ## Success Response
 
