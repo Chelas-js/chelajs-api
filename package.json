@@ -28,8 +28,10 @@
   "license": "ISC",
   "scripts": {
     "build": "nest build",
+    "gcp-build": "nest build",
     "start:dev": "nest start --watch",
     "start:prod": "node .",
+    "start": "node .",
     "lint": "prettier -c .",
     "fmt": "prettier -w ."
   }
