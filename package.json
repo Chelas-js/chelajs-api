@@ -28,7 +28,7 @@
   },
   "description": "",
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "gcp-build": "nest build",
