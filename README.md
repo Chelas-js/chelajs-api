@@ -2,7 +2,7 @@
 
 Bienvenido al repositorio de la API de Chelajs, el corazón del backend de [chelajs.cl](https://chelajs.cl). Este proyecto, creado con dedicación para la comunidad, se construye sobre [NestJS](https://nestjs.com/), un framework progresivo de Node.js, para ofrecer una API robusta y escalable.
 
-Aquí encontrará las APIs que impulsan nuestro sitio web, gestionando datos esenciales como información de participantes, ofertas laborales y mucho más. Nos esforzamos por construir una plataforma que sirva a la comunidad de Javascript Chile, facilitando la conexión y el crecimiento profesional de sus miembros.
+Aquí encontrará las APIs que impulsan nuestro sitio web, gestionando datos esenciales como información de participantes, ofertas laborales, eventos y mucho más. Nos esforzamos por construir una plataforma que sirva a la comunidad de Javascript Chile, facilitando la conexión y el crecimiento profesional de sus miembros.
 
 ## Documentación
 
@@ -13,6 +13,8 @@ La documentación de la API REST se encuentra organizada en la carpeta [`docs/re
 - **[Documentación de Participantes](./docs/rest/participants.md):** Explore los endpoints destinados a la gestión de la información de los participantes de la comunidad, incluyendo la consulta y actualización de perfiles.
 
 - **[Documentación de Ofertas de Trabajo](./docs/rest/job-offers.md):** Infórmese sobre las funcionalidades para la gestión de ofertas laborales, desde la creación y consulta hasta la eliminación de las mismas.
+
+- **[Documentación de Eventos](./docs/rest/events.md):** Descubra los endpoints para la gestión de eventos dentro de la plataforma.
 
 ## Primeros Pasos
 
