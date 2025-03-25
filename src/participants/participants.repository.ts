@@ -34,7 +34,7 @@ export class ParticipantsRepository {
 
   async listParticipants() {
     const docs = await this.participantsCollections
-      .orderBy("createdAt")
+      .orderBy("updatedAt")
       .limit(30)
       .get();
 
