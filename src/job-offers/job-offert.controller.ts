@@ -14,7 +14,7 @@ import {
 import { JobOfferService } from "./job-offert.service";
 import { CreateOfferSchema } from "./dtos/create-offert.dto";
 import { AuthGuard } from "../auth/auth.guard";
-import { Authantication } from "src/auth/authantication.decoration";
+import { Authantication } from "../auth/authantication.decoration";
 import { DecodedIdToken } from "firebase-admin/lib/auth/token-verifier";
 
 @Controller("/job_offers")
