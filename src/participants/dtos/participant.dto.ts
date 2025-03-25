@@ -3,18 +3,18 @@ import { z } from "zod";
 export const ParticipantSchema = z.object({
   uid: z.string(),
   name: z.string(),
-  bio: z.string(),
+  bio: z.string().optional(),
   labels: z.array(z.string()),
-  country: z.string().nullable(),
+  country: z.string().optional(),
   social: z
     .object({
-      linkedin: z.string().url().nullable(),
-      github: z.string().url().nullable(),
-      twitter: z.string().url().nullable(),
-      website: z.string().url().nullable(),
+      linkedin: z.string().url().optional(),
+      github: z.string().url().optional(),
+      twitter: z.string().url().optional(),
+      website: z.string().url().optional(),
     })
-    .nullable(),
-  createdAt: z.string().datetime(),
+    .optional(),
+  updatedAt: z.string().datetime(),
 });
 
 export type ParticipantDTO = z.infer<typeof ParticipantSchema>;
