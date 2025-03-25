@@ -18,7 +18,7 @@
 
 # Endpoint: PUT /participants
 
-Permite actualizar la información del participante autenticado actual. Este endpoint permite modificar datos del perfil como el nombre, biografía, redes sociales, etiquetas de la comunidad, entre otros.
+Permite actualizar la información del participante autenticado actual. Este endpoint permite modificar datos del perfil como el nombre, biografía, redes sociales, etiquetas de la comunidad, entre otros. **This endpoint requires authentication. See the [authentication documentation](./authentication.md) for details on how to authenticate your requests.**
 
 **Authentication Required:** Este endpoint **requiere autenticación**.
 
