@@ -20,7 +20,7 @@ export class ParticipantsService {
     return await this.participantsRepository.setParticipant({ uid, ...data });
   }
 
-  describeParticipan(uid: string) {
+  describeParticipant(uid: string) {
     return this.participantsRepository.getParticipant(uid);
   }
 
