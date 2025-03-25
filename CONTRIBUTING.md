@@ -116,4 +116,12 @@ Los documentos disponibles son:
 
 Al agregar o modificar funcionalidades de la API, asegúrate de actualizar la documentación correspondiente en estos archivos. Esto ayuda a mantener una documentación centralizada y actualizada de todos los endpoints y su funcionamiento.
 
+## Endpoint `.know-token` para Desarrollo Local
+
+Para facilitar las pruebas de la API en el entorno local, se ha implementado un endpoint especial llamado `.know-token`. Este endpoint permite a los desarrolladores obtener rápidamente un ID Token válido para autenticarse y probar las diferentes APIs.
+
+**Importante:** Por medidas de seguridad, este endpoint solo permite acceder a los tokens generados por el usuario autenticado. No es posible obtener tokens de otros usuarios a través de este endpoint.
+
+Puedes encontrar más detalles sobre cómo utilizar este endpoint en la documentación de autenticación: [Authentication](./docs/rest/authentication.md).
+
 ¡Con estos pasos, deberías tener tu entorno de desarrollo configurado y listo para comenzar a contribuir! Por favor, consulta otros documentos dentro del repositorio para obtener más información sobre la estructura del proyecto y las guías de contribución específicas.
