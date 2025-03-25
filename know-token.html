@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>auth</title>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signInWithPopup,
+        GithubAuthProvider,
+      } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBgOE3pM-1o8_xHuK6hapMDUIM19vnxfqo",
+        authDomain: "chelajs.firebaseapp.com",
+        projectId: "chelajs",
+        storageBucket: "chelajs.firebasestorage.app",
+        messagingSenderId: "972855457624",
+        appId: "1:972855457624:web:ac3e5b6372810324df972d",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      let session = null;
+
+      onAuthStateChanged(auth, async (stateSession) => {
+        session = stateSession;
+        console.log("🚀 ~ onAuthStateChanged ~ session:", session);
+        if (stateSession === null) {
+          const githubProvider = new GithubAuthProvider();
+
+          const result = await signInWithPopup(auth, githubProvider);
+          console.log("🚀 ~ onAuthStateChanged ~ result:", result);
+
+          return;
+        }
+        document.getElementById("textarea-token").value =
+          await session?.getIdToken();
+      });
+
+      document
+        .getElementById("btn-copy-token")
+        .addEventListener("click", async () => {
+          navigator.clipboard.writeText(await session?.getIdToken());
+          document.getElementById("btn-copy-token").innerText = "Copiado!";
+          setTimeout(() => {
+            document.getElementById("btn-copy-token").innerText = "Copiar";
+          }, 3000);
+        });
+
+      setInterval(async () => {
+        const idToken = await session?.getIdToken();
+        console.log("🚀 ~ setInterval ~ idToken:", idToken);
+        document.getElementById("textarea-token").value = idToken;
+      }, 1000);
+    </script>
+    <style>
+      .box-textarea-token {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box-textarea-token">
+      <label for="textarea-token">Token:</label>
+      <textarea
+        name="textarea-token"
+        id="textarea-token"
+        cols="30"
+        rows="10"
+        id=""
+        disabled
+      ></textarea>
+      <div class="buttons">
+        <button id="btn-copy-token">Copiar</button>
+      </div>
+    </div>
+  </body>
+</html>

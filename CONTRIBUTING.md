@@ -104,4 +104,16 @@ bun fmt
 
 Este comando aplicará automáticamente el formato de Prettier a todo el código del proyecto.
 
+## Documentación de la API REST
+
+La documentación de la API REST se encuentra en la carpeta `docs/rest/`. Cada dominio tiene su propia documentación para describir sus funcionalidades.
+
+Los documentos disponibles son:
+
+- [Authentication](./docs/rest/authentication.md) describe la autenticación de la API REST.
+- [Job Offers](./docs/rest/job-offers.md) muestra las APIs para gestionar las ofertas de trabajo.
+- [Participants](./docs/rest/participants.md) muestra las APIs para gestionar información de los participantes de la comunidad.
+
+Al agregar o modificar funcionalidades de la API, asegúrate de actualizar la documentación correspondiente en estos archivos. Esto ayuda a mantener una documentación centralizada y actualizada de todos los endpoints y su funcionamiento.
+
 ¡Con estos pasos, deberías tener tu entorno de desarrollo configurado y listo para comenzar a contribuir! Por favor, consulta otros documentos dentro del repositorio para obtener más información sobre la estructura del proyecto y las guías de contribución específicas.
