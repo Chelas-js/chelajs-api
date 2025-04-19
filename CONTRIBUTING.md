@@ -1,5 +1,24 @@
 # Contribuciones
 
+<!-- TOC -->
+- [Resumen de Comandos](#resumen-de-comandos)
+- [Requisitos](#requisitos)
+- [Configuración del Entorno de Desarrollo](#configuración-del-entorno-de-desarrollo)
+- [Ejecución Local](#ejecución-local)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Pruebas](#pruebas)
+- [Formato de Código](#formato-de-código)
+- [Mensajes de Commit](#mensajes-de-commit)
+- [Regla de tipo para Commits de Pruebas](#regla-de-tipo-para-commits-de-pruebas)
+- [Regla de tipo para Commits de Configuración y Dependencias](#regla-de-tipo-para-commits-de-configuración-y-dependencias)
+- [Regla de tipo para Commits de Documentación](#regla-de-tipo-para-commits-de-documentación)
+- [Sugerencia para Commits con Archivos de Pruebas](#sugerencia-para-commits-con-archivos-de-pruebas)
+- [Recomendación sobre Commits por Tipo](#recomendación-sobre-commits-por-tipo)
+- [Regla para identificar el alcance (scope) en los commits](#regla-para-identificar-el-alcance-scope-en-los-commits)
+- [Documentación de la API REST](#documentación-de-la-api-rest)
+- [Endpoint .know-token para Desarrollo Local](#endpoint-know-token-para-desarrollo-local)
+<!-- /TOC -->
+
 ¡Gracias por tu interés en contribuir a este proyecto API!
 
 Este documento proporciona una guía para contribuir al proyecto `chelajs-api`. Sigue estas instrucciones para configurar tu entorno de desarrollo y empezar a colaborar.
@@ -67,14 +86,34 @@ Este comando iniciará el servidor de desarrollo y recargará la aplicación aut
 
 Este proyecto está construido utilizando [NestJS](https://nestjs.com/), un framework progresivo de Node.js para construir aplicaciones de servidor eficientes y escalables.
 
-El punto de entrada principal de la aplicación se encuentra en el archivo `src/main.ts`.
+El punto de entrada principal de la aplicación es `src/main.ts`, y la configuración principal del módulo se encuentra en `src/app.module.ts`.
 
-El proyecto está organizado en **dominios**. Cada dominio representa una parte específica de la funcionalidad de la API y reside en una carpeta dentro del directorio `src/`.
+La organización del código sigue una estructura modular basada en dominios, donde cada dominio representa una funcionalidad principal de la API. A continuación se describen los principales directorios y archivos dentro de `src/`:
 
-Por ejemplo, el dominio de `job-offers` se encuentra en `src/job-offers/`. Dentro de cada dominio, encontrarás:
+- **auth/**: Lógica de autenticación y autorización.
+  - `auth.guard.ts`, `auth.module.ts`, `auth.service.ts`, `authantication.decoration.ts`, `firebaseAdmin.service.ts`
+  - `dtos/`: Objetos de transferencia de datos para autenticación.
+- **config/**: Configuración general de la aplicación.
+  - `configuration.ts`
+  - `dtos/`: DTOs para configuración.
+- **constants/**: Definición de constantes y enumeraciones usadas en la aplicación.
+  - `access.enum.ts`
+- **dtos/**: DTOs compartidos entre diferentes módulos.
+  - `pagination.dto.ts`
+- **events/**: Funcionalidad relacionada con eventos.
+  - `events.controller.ts`, `events.module.ts`, `events.repository.ts`, `events.service.ts`
+  - `dtos/`: DTOs específicos para eventos.
+- **job-offers/**: Gestión de ofertas de trabajo.
+  - `job-offert.controller.ts`, `job-offert.module.ts`, `job-offert.repository.ts`, `job-offert.service.ts`
+  - Archivos `.spec.ts`: Pruebas unitarias.
+  - `dtos/`: DTOs para ofertas de trabajo.
+- **know-token/**: Endpoint especial para obtener tokens de desarrollo.
+  - `know-token.controller.ts`
+- **participants/**: Gestión de participantes de la comunidad.
+  - `participants.controller.ts`, `participants.module.ts`, `participants.repository.ts`, `participants.service.ts`, `ZodValidationPipe.ts`
+  - `dtos/`: DTOs para participantes.
 
-- **Controladores:** Responsables de manejar las peticiones HTTP y enrutar a los servicios correspondientes. Ejemplo: `src/job-offers/job-offert.controller.ts`.
-- **Servicios:** Contienen la lógica de negocio y la interacción con la base de datos u otras fuentes de datos. Ejemplo: `src/job-offers/job-offert.service.ts`.
+Cada dominio contiene sus propios controladores, servicios, repositorios y DTOs, siguiendo las mejores prácticas de NestJS para mantener el código modular y escalable.
 
 ## Pruebas
 
@@ -103,6 +142,106 @@ bun fmt
 ```
 
 Este comando aplicará automáticamente el formato de Prettier a todo el código del proyecto.
+
+## Mensajes de Commit
+
+Para mantener un historial de cambios claro y consistente, **todos los mensajes de commit deben seguir el estándar [Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/)**.
+
+Un mensaje de commit debe tener la siguiente estructura:
+
+```
+tipo(alcance opcional): descripción breve
+
+cuerpo opcional que explique el motivo del cambio y cualquier detalle relevante
+```
+
+- **tipo**: Indica la naturaleza del cambio. Ejemplos comunes: `feat` (nueva funcionalidad), `fix` (corrección de bug), `docs` (documentación), `refactor`, `test`, `chore`.
+- **alcance**: (Opcional) Área del código afectada, entre paréntesis.
+- **descripción breve**: Explicación concisa del cambio, en minúsculas y en tiempo presente.
+- **cuerpo**: (Opcional) Explicación adicional que justifique el cambio, detalle relevante, contexto o motivación.
+
+**Ejemplos:**
+- `feat(auth): agregar autenticación con Google`
+
+  Se implementa la autenticación utilizando OAuth2 con Google para permitir el inicio de sesión social.
+
+- `fix(events): corregir error al crear eventos sin fecha`
+
+  Se corrige un bug que impedía la creación de eventos cuando no se especificaba la fecha, ahora se asigna la fecha actual por defecto.
+
+- `docs: actualizar guía de contribución`
+
+  Se actualiza la documentación para reflejar los nuevos lineamientos de commits.
+
+- `refactor(participants): simplificar lógica de validación`
+
+  Se refactoriza el servicio de participantes para mejorar la legibilidad y reducir la duplicidad de código.
+
+Consulta la [documentación oficial de Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/) para más detalles y ejemplos.
+
+## Regla de tipo para Commits de Pruebas
+
+Si modificas cualquier archivo dentro de una carpeta `tests/`, o el archivo tiene la extensión `.spec.ts` o `.test.ts`, **el tipo del commit debe ser `test`**.
+
+Ejemplo:
+- `test(job-offers): agregar pruebas para el repositorio`
+- `test: actualizar tests de autenticación`
+
+Esto ayuda a identificar rápidamente los cambios relacionados con pruebas en el historial de commits.
+
+## Regla de tipo para Commits de Configuración y Dependencias
+
+Si modificas cualquier archivo dentro de la carpeta `.github/` o los archivos `tsconfig.build.json`, `.tool-versions`, `bun.lock`, `nest-cli.json`, `package-lock.json`, `package.json` o `tsconfig.json`, **el tipo del commit debe ser `build`**.
+
+Ejemplo:
+- `build: actualizar dependencias en package.json`
+- `build: modificar configuración de tsconfig.json`
+- `build: agregar workflows en .github/`
+
+Esto permite identificar fácilmente los cambios relacionados con la configuración del proyecto y la gestión de dependencias.
+
+## Regla de tipo para Commits de Documentación
+
+Si modificas cualquier archivo dentro de la carpeta `docs/`, **el tipo del commit debe ser `docs`**.
+
+Ejemplo:
+- `docs: actualizar documentación de autenticación`
+- `docs(rest): agregar ejemplos de uso de endpoints`
+
+Esto permite identificar fácilmente los cambios relacionados con la documentación del proyecto.
+
+## Sugerencia para Commits con Archivos de Pruebas
+
+Si estás trabajando en dos archivos y uno de ellos es un archivo de pruebas (por ejemplo, con extensión `.spec.ts`), **primero crea el commit para el archivo de pruebas**. Esto ayuda a mantener un historial de cambios más claro y facilita la revisión del código.
+
+## Recomendación sobre Commits por Tipo
+
+Si realizas cambios que afectan a diferentes tipos (por ejemplo, pruebas y documentación), **crea un commit separado por cada tipo**. Esto facilita la revisión, el seguimiento y la comprensión del historial de cambios.
+
+## Regla para identificar el alcance (scope) en los commits
+
+El **alcance** (scope) en los mensajes de commit debe corresponder al nombre de la carpeta principal ubicada directamente dentro del directorio `src/` donde se realiza la modificación.
+
+- Por ejemplo, si modificas el archivo `src/auth/dtos/configuration.dto.ts`, el alcance es `auth`.
+- Si modificas `src/events/events.service.ts`, el alcance es `events`.
+- Si modificas `src/participants/dtos/participant.dto.ts`, el alcance es `participants`.
+
+### Scopes disponibles
+
+Actualmente, los scopes válidos en este proyecto son:
+
+- auth
+- config
+- constants
+- dtos
+- events
+- job-offers
+- know-token
+- participants
+
+Si el archivo modificado está directamente bajo `src/` y no pertenece a ningún dominio (por ejemplo, `src/main.ts` o `src/app.module.ts`), **omite el alcance** en el mensaje de commit y utiliza solo el tipo y la descripción.
+
+Esto ayuda a mantener los mensajes de commit claros y consistentes, facilitando el rastreo de cambios por dominio o funcionalidad.
 
 ## Documentación de la API REST
 
