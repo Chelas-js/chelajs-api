@@ -145,7 +145,7 @@ Este comando aplicará automáticamente el formato de Prettier a todo el código
 
 ## Mensajes de Commit
 
-Para mantener un historial de cambios claro y consistente, **todos los mensajes de commit deben seguir el estándar [Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/)**.
+Para mantener un historial de cambios claro y consistente, **todos los mensajes de commit deben seguir el estándar [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)**.
 
 Un mensaje de commit debe tener la siguiente estructura:
 
@@ -161,23 +161,25 @@ cuerpo opcional que explique el motivo del cambio y cualquier detalle relevante
 - **cuerpo**: (Opcional) Explicación adicional que justifique el cambio, detalle relevante, contexto o motivación.
 
 **Ejemplos:**
-- `feat(auth): agregar autenticación con Google`
+- `feat(auth): add Google authentication`
 
-  Se implementa la autenticación utilizando OAuth2 con Google para permitir el inicio de sesión social.
+  Implements OAuth2 authentication with Google to allow social login.
 
-- `fix(events): corregir error al crear eventos sin fecha`
+- `fix(events): fix error when creating events without date`
 
-  Se corrige un bug que impedía la creación de eventos cuando no se especificaba la fecha, ahora se asigna la fecha actual por defecto.
+  Fixes a bug that prevented event creation when no date was specified; now assigns the current date by default.
 
-- `docs: actualizar guía de contribución`
+- `docs: update contribution guide`
 
-  Se actualiza la documentación para reflejar los nuevos lineamientos de commits.
+  Updates documentation to reflect new commit guidelines.
 
-- `refactor(participants): simplificar lógica de validación`
+- `refactor(participants): simplify validation logic`
 
-  Se refactoriza el servicio de participantes para mejorar la legibilidad y reducir la duplicidad de código.
+  Refactors the participants service to improve readability and reduce code duplication.
 
-Consulta la [documentación oficial de Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/) para más detalles y ejemplos.
+Consulta la [documentación oficial de Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) para más detalles y ejemplos.
+
+> **Important:** All commit messages must be written in English. This ensures consistency and facilitates international collaboration.
 
 ## Regla de tipo para Commits de Pruebas
 
